@@ -10,13 +10,47 @@
                 <flux:sidebar.collapse class="lg:hidden" />
             </flux:sidebar.header>
 
+            @auth
+                <livewire:layout.tenant-switcher />
+            @endauth
+
+            <flux:separator variant="subtle" />
+
             <flux:sidebar.nav>
-                <flux:sidebar.group :heading="__('Platform')" class="grid">
+                <flux:sidebar.group :heading="__('NuvioERP v1.0')" class="grid">
                     <flux:sidebar.item icon="home" :href="route('dashboard')" :current="request()->routeIs('dashboard')" wire:navigate>
                         {{ __('Dashboard') }}
                     </flux:sidebar.item>
+                    @module('accounts')
+                        <flux:sidebar.item icon="users" :href="route('ta.accounts.index')" :current="request()->routeIs('accounts.*')" wire:navigate>
+                            {{ __('Accounts') }}
+                        </flux:sidebar.item>
+                    @endmodule
+                    @module('contacts')
+                        <flux:sidebar.item icon="users" :href="route('ta.contacts.index')" :current="request()->routeIs('contacts.*')" wire:navigate>
+                            {{ __('Contacts') }}
+                        </flux:sidebar.item>
+                    @endmodule
+                    @module('employees')
+                        <flux:sidebar.item icon="users" :href="route('ta.employees.index')" :current="request()->routeIs('employees.*')" wire:navigate>
+                            {{ __('Employees') }}
+                        </flux:sidebar.item>
+                    @endmodule
+                    @module('projects')
+                        <flux:sidebar.item icon="folder-open" :href="route('ta.projects.index')" :current="request()->routeIs('projects.*')" wire:navigate>
+                            {{ __('Projects') }}
+                        </flux:sidebar.item>
+                    @endmodule
+                    @module('tasks')
+                        <flux:sidebar.item icon="check-circle" :href="route('ta.tasks.index')" :current="request()->routeIs('tasks.*')" wire:navigate>
+                            {{ __('Tasks') }}
+                        </flux:sidebar.item>
+                    @endmodule
                 </flux:sidebar.group>
             </flux:sidebar.nav>
+
+
+
 
             <flux:spacer />
 
@@ -29,6 +63,16 @@
                     {{ __('Documentation') }}
                 </flux:sidebar.item>
             </flux:sidebar.nav>
+
+            @php
+                $ctx = app(\App\Core\Context\TenantContext::class)->tenant();
+                $database = \Illuminate\Support\Facades\DB::connection('tenant')->getDatabaseName();
+            @endphp
+
+            <flux:badge color="zinc" size="sm">
+                {{ $ctx->name ?? 'N/A' }} <br>
+                {{ $database }}
+            </flux:badge>
 
             <x-desktop-user-menu class="hidden lg:block" :name="auth()->user()->username" />
         </flux:sidebar>

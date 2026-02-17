@@ -8,17 +8,18 @@ return new class extends Migration {
 
     protected $connection = 'landlord';
 
-    public function up(): void {
+    public function up(): void
+    {
         Schema::table('users', function (Blueprint $table) {
-            $table->string('username')->unique()->after('name');
-            $table->boolean('active')->default(true)->after('password');
-            $table->softDeletes()->after('updated_at');
+            $table->enum('type', ['super_admin', 'client'])->default('client')->after('password');
+            $table->foreignId('default_tenant_id')->nullable()->after('active');
         });
     }
 
-    public function down(): void {
+    public function down(): void
+    {
         Schema::table('users', function (Blueprint $table) {
-            $table->dropColumn(['username', 'type', 'active', 'default_tenant_id', 'deleted_at']);
+            $table->dropColumn(['type', 'default_tenant_id']);
         });
     }
 };
