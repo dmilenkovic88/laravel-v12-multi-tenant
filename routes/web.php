@@ -23,6 +23,10 @@ Route::middleware(['auth', 'verified', 'active', 'tenant.db'])->group(function (
     // NAPOMENA: Ovaj middleware je obavezan za tenant rute!
     Route::middleware(['tenant.access'])->group(function () {
 
+        // Route::get('/dashboard', function () {
+        //     return view('dashboard');
+        // })->name('dashboard');
+
         require __DIR__.'/accounts.php';
         require __DIR__.'/contacts.php';
         require __DIR__.'/employees.php';
