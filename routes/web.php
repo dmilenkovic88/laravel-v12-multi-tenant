@@ -6,6 +6,12 @@ Route::get('/', function () {
     return view('welcome');
 })->name('home');
 
+// Route::get('/admin/dashboard', function () {
+//     return view('admin.admin-dashboard');
+// })->name('admin.dashboard')->middleware(['auth', 'verified', 'active', 'landlord']);
+
+// Route::livewire('/admin/dashboard', 'admin::admin-dashboard')->name('admin.dashboard');
+
 Route::middleware(['auth', 'verified', 'active', 'tenant.db'])->group(function () {
 
     Route::get('/dashboard', function () {

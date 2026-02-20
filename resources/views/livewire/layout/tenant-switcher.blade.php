@@ -1,7 +1,7 @@
 <div class="min-w-[220px]">
     <flux:select
         wire:model.live="selectedTenantId"
-        placeholder="Izaberi tenant..."
+        {{-- placeholder="Izaberi tenant..." --}}
         size="sm"
     >
         <flux:select.option value="">Bez tenanta</flux:select.option>
