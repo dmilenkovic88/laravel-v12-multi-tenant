@@ -28,7 +28,6 @@
                     </div>
                 @endif
             </div>
-            <flux:input wire:model="default_tenant_id" :label="__('Default Tenant')" type="text" required autofocus autocomplete="default_tenant_id" />
 
             <div class="flex items-center gap-4">
                 <div class="flex items-center justify-end">

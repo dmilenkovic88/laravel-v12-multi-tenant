@@ -5,6 +5,8 @@
 
     <x-settings.layout :heading="__('Other Settings')" :subheading="__('Update your other settings')">
 
+        <livewire:default-tenant-select />
+
         <form wire:submit="updateOtherInformation" class="my-6 w-full space-y-6">
             <flux:input wire:model="field_name_1" :label="__('Field Name 1')" type="text" required autofocus autocomplete="field_name_1" />
             <flux:input wire:model="field_name_2" :label="__('Field Name 2')" type="text" required autofocus autocomplete="field_name_2" />
