@@ -17,6 +17,7 @@ return [
         resource_path('views/components'),
         resource_path('views/livewire'),
         resource_path('views/admin'),
+        resource_path('views/modules'),
     ],
 
     /*
@@ -34,6 +35,8 @@ return [
         'layouts' => resource_path('views/layouts'),
         'pages' => resource_path('views/pages'),
         'admin' => resource_path('views/admin'),
+        'module' => resource_path('views/modules'),
+        'test' => resource_path('views/admin/test'),
     ],
 
     /*
